@@ -17,15 +17,16 @@ function App() {
       redirect_uri: window.location.origin
     }}
   >
+ 
     <Navbar />
-      <YearProgress /> 
+    <YearProgress /> 
     <div>
-      {/* <Goals /> */}
+      
     <PomodoroTimer />
     </div>
       </Auth0Provider>
+      {/* <Goals /> */}
       {/* <Breaks/> */}
-      
       {/* <Profile/> */}
       {/* <Footer />   */}
   </div>
