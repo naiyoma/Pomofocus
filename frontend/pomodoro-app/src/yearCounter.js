@@ -1,4 +1,5 @@
 import React, { useState, useEffect} from 'react';
+import { Link } from 'react-router-dom';
 
 function YearProgress() {
     const [yearProgress, setYearProgress] = useState(0);
@@ -37,7 +38,9 @@ function YearProgress() {
                 </span>
             </div>
             <div className="mb-2">
+                
                 <span className="text-xs font-semibold inline-block py-1 px-2 uppercase rounded-full text-rose-900 bg-rose-200">
+                    
                     Daily Goals
                 </span>
             </div>

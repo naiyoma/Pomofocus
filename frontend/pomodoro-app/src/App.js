@@ -1,10 +1,13 @@
-import logo from './logo.svg';
+
 import './App.css';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
 import Navbar from './components/Navbar';
 import { Auth0Provider } from '@auth0/auth0-react';
 import PomodoroTimer from './Timer';
 import YearProgress from './yearCounter';
 import Goals from './components/Goals';
+import DailyGoalsForm from "./components/Daily";
+
 
 
 function App() {
@@ -17,13 +20,18 @@ function App() {
       redirect_uri: window.location.origin
     }}
   >
- 
-    <Navbar />
-    <YearProgress /> 
-    <div>
+      <Navbar />
+      <YearProgress />
       
-    <PomodoroTimer />
-    </div>
+    <Router>
+    <Routes>
+        <Route path="/daily-goals" element={DailyGoalsForm} />
+        <Route path="/" element={YearProgress} />
+      </Routes>  
+    </Router>
+        <div>
+          <PomodoroTimer />
+        </div>
       </Auth0Provider>
       {/* <Goals /> */}
       {/* <Breaks/> */}
@@ -32,5 +40,4 @@ function App() {
   </div>
   );
 }
-
 export default App;
