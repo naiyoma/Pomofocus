@@ -33,22 +33,22 @@ function PomodoroTimer() {
       
     return (
       
-        <div className="border border-current rounded-md w-full md:w-3/4 lg:w-2/4 xl:w-1/3 flex justify-center border-rose-900 p-4 mx-auto shadow-lg shadow-blue-500/50 mt-6">
+        <div className="border border-current rounded-md w-full md:w-3/4 lg:w-2/4 xl:w-1/3 flex justify-center border-teal-900 p-4 mx-auto shadow-lg shadow-blue-500/50 mt-6">
           <div style={{textAlign: 'center'}}>
-            <button className="rounded-lg border-solid border-2 border-rose-900 w-24 bg-rose-100 text-rose-900" onClick={() => {
+            <button className="rounded-lg border-solid border-2 border-teal-900 w-24 bg-teal-100 text-teal-900" onClick={() => {
               const time = new Date();
               time.setSeconds(time.getSeconds() + 300);
               restart(time)
               }}>Break</button>
-            <div style={{fontSize: '100px'}} className="text-rose-900">
+            <div style={{fontSize: '100px'}} className="text-teal-900">
               <span>{days}</span>:<span>{hours}</span>:<span>{minutes}</span>:<span>{seconds}</span>
             </div>
             <p>{isRunning ? 'Running' : 'Not running'}</p>
             {/* rounded-lg border-solid border-2 border-rose-900 w-24 bg-rose-100 text-rose-900 */}
-              {!timerStarted && <button className="rounded-lg border-solid border-2 border-rose-900 w-24 bg-rose-100 text-rose-900 font-bold py-2 px-4 mr-2" onClick={handleStartTimer}>Start</button>}
-              {timerStarted && <button className="rounded-lg border-solid border-2 border-rose-900 w-24 bg-rose-100 text-rose-900 py-2 px-4 mr-2" onClick={pause}>Pause</button>}
-              {timerStarted && <button className="rounded-lg border-solid border-2 border-rose-900 w-24 bg-rose-100 text-rose-900 py-2 px-4 mr-2" onClick={resume}>Resume</button>}
-            <button class="rounded-lg border-solid border-2 border-rose-900 w-24 bg-rose-100 text-rose-900 py-2 px-4" onClick={() => {
+              {!timerStarted && <button className="rounded-lg border-solid border-2 border-teal-900 w-24 bg-teal-100 text-teal-900 font-bold py-2 px-4 mr-2" onClick={handleStartTimer}>Start</button>}
+              {timerStarted && <button className="rounded-lg border-solid border-2 border-teal-900 w-24 bg-rose-100 text-rose-900 py-2 px-4 mr-2" onClick={pause}>Pause</button>}
+              {timerStarted && <button className="rounded-lg border-solid border-2 border-teal-900 w-24 bg-rose-100 text-rose-900 py-2 px-4 mr-2" onClick={resume}>Resume</button>}
+            <button class="rounded-lg border-solid border-2 border-teal-900 w-24 bg-teal-100 text-teal-900 py-2 px-4" onClick={() => {
               // Restarts to 5 minutes timer
               const time = new Date();
               time.setSeconds(time.getSeconds() + selectedDuration);
@@ -57,9 +57,9 @@ function PomodoroTimer() {
               Restart
             </button>
             <h2>Selected Timer Duration:</h2>
-            <button class="rounded-lg border-solid border-2 border-rose-900 w-24 bg-rose-100 text-rose-900 py-2 px-4 mr-2"onClick={() => handleDurationChange(30*60)}>30 minutes</button>
-            <button class="rounded-lg border-solid border-2 border-rose-900 w-24 bg-rose-100 text-rose-900 py-2 px-4  mr-2" onClick={() => handleDurationChange(45*60)}>45 minutes</button>
-            <button class="rounded-lg border-solid border-2 border-rose-900 w-20 bg-rose-100 text-rose-900 py-2 px-4 mr-2" onClick={() => handleDurationChange(60*60)}>1 Hour</button>
+            <button class="rounded-lg border-solid border-2 border-teal-900 w-24 bg-teal-100 text-teal-900 py-2 px-4 mr-2"onClick={() => handleDurationChange(30*60)}>30 minutes</button>
+            <button class="rounded-lg border-solid border-2 border-teal-900 w-24 bg-teal-100 text-teal-900 py-2 px-4  mr-2" onClick={() => handleDurationChange(45*60)}>45 minutes</button>
+            <button class="rounded-lg border-solid border-2 border-teal-900 w-20 bg-teal-100 text-teal-900 py-2 px-4 mr-2" onClick={() => handleDurationChange(60*60)}>1 Hour</button>
           </div>
         </div>
     )
