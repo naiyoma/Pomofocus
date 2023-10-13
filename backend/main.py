@@ -20,7 +20,3 @@ def start_application():
 
 app = start_application()
 
-
-@app.get("/")
-def read_root():
-    return {"Hello": "World"}
