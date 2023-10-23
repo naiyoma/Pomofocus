@@ -8,7 +8,7 @@ from repository.user import create_new_user
 
 router = APIRouter()
 
-@router.post("/")
+@router.post("/create-user")
 def create_user(user: UserCreate, db: Session = Depends(get_db)):
     user = create_new_user(user=user,db=db)
     return user
