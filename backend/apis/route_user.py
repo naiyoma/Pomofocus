@@ -15,7 +15,7 @@ def create_user(user: UserCreate, db: Session = Depends(get_db)):
     user = create_new_user(user=user,db=db)
     return user
 
-@router.get("/users/", response_model=List[User])
-def get_user(db: Session = Depends(get_db)):
-    users = get_all_users(db)
-    return users
+# @router.get("/users/", response_model=List[User])
+# def get_user(db: Session = Depends(get_db)):
+#     users = get_all_users(db)
+#     return users

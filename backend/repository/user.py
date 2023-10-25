@@ -11,7 +11,6 @@ def create_new_user(user:UserCreate, db:Session):
     user = User(
         email = user.email,
         password=Hasher.get_password_hash(user.password),
-        phone_number=user.phone_number,
         confirm_password=user.confirm_password,
         username=user.username,
     )

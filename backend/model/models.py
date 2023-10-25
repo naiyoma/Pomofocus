@@ -7,7 +7,7 @@ from base_class import Base
 
 class User(Base):
     id = Column(Integer, primary_key=True)
-    phone_number = Column(Integer, nullable=False)
+    phone_number = Column(Integer, nullable=True)
     email = Column(String, nullable=True)
     password = Column(String, nullable=True)
     confirm_password = Column(String, nullable=True)
