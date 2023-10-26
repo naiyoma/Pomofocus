@@ -6,6 +6,13 @@ class UserCreate(BaseModel):
     confirm_password: str = Field(..., min_length=4)
     username: str = Field(..., min_length=4)
 
+class UserResponse(BaseModel):
+    id: int
+    email: str
+    username: str
+
+    class COnfig():
+        orm_mode = True
 
 class ListUser(BaseModel):
     id: int
