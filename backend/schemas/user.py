@@ -22,3 +22,14 @@ class ListUser(BaseModel):
     class Config():
         orm_mode = True
 
+class TokenSchema(BaseModel):
+    access_token: str
+    refresh_token: str
+
+class TokenPayload(BaseModel):
+    sub: str = None
+    exp: int = None
+    
+class LoginCredentials(BaseModel):
+    email: EmailStr
+    password: str

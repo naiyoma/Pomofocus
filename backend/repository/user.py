@@ -9,7 +9,6 @@ from fastapi.responses import RedirectResponse
 from hashing import Hasher
 
 
-
 def get_all_users(db: Session) -> List[User]:
     return db.query(User).all()
 
