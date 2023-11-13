@@ -1,4 +1,4 @@
-from typing import Annotated
+
 from fastapi import FastAPI
 from config import settings
 from session import engine
