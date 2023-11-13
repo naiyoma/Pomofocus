@@ -20,7 +20,7 @@ class User(Base):
 
 class DailyGoal(Base):
     id = Column(Integer, primary_key=True)
-    user_id = Column(Integer, ForeignKey('users.id'), nullable=False)
+    user_id = Column(Integer, ForeignKey('user.id'), nullable=False)
     goal1 = Column(String, nullable=True)
     goal2 = Column(String, nullable=True)
     goal3 = Column(String, nullable=True)
