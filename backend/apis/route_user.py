@@ -9,7 +9,7 @@ from schemas.goals import DailyGoalCreate, DailyGoalResponse
 from session import get_db
 from repository.user import get_all_users, get_user_by_email
 from model.models import User, DailyGoal
-from typing import List, Annotated, Any, Union
+from typing import List
 from hashing import Hasher
 from utils import create_access_token, create_refresh_token
 from datetime import timedelta
