@@ -8,6 +8,10 @@ import YearProgress from './yearCounter';
 import DailyGoalsForm from './components/Daily';
 import MonthlyGoalsForm from "./components/Month";
 import YearGoalsForm from "./components/Year"
+import { LoginForm } from './components/Login';
+import {RegistrationForm} from './components/Register';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -26,12 +30,15 @@ function App() {
             <Route path="/monthly-goals" element={<MonthlyGoalsForm />} />
             <Route path="/yearly-goals" element={<YearGoalsForm />} />
             <Route path="/" element={<YearProgress />} />
+            <Route path="/login" element={<LoginForm />} />
+            <Route path="/register" element={<RegistrationForm />} />
           </Routes>
         </Router>
         <div>
           {/* <PomodoroTimer /> */}
         </div>
       </Auth0Provider>
+      <ToastContainer />
       {/* Other components */}
     </div>
   );
