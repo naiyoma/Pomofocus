@@ -1,5 +1,4 @@
 import React, {useState} from 'react';
-import './style.css'
 function RegistrationForm() {
     return(
         <div className="Auth-form-container">
