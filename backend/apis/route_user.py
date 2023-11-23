@@ -14,6 +14,7 @@ from typing import List
 from hashing import Hasher
 from utils import create_access_token, create_refresh_token
 from datetime import timedelta
+from datetime import datetime
 
 router = APIRouter()
 
@@ -86,7 +87,7 @@ def create_daily_goal(daily_goal: DailyGoalCreate, db: Session = Depends(get_db)
         goal3=daily_goal.goal3,
         goal4=daily_goal.goal4,
         goal5=daily_goal.goal5,
-        created_at=datetime.now())
+        created_at=datetime.now().date())
     db.add(db_daily_goal)
     db.commit()
     db.refresh(db_daily_goal)
@@ -108,16 +109,29 @@ def create_monthly_goal(monthly_goal: MonthlyGoalCreate, db: Session = Depends(g
         goal3=monthly_goal.goal3,
         goal4=monthly_goal.goal4,
         goal5=monthly_goal.goal5,
-        created_at=datetime.now())
+        created_at=datetime.now().date())
     db.add(db_monthly_goal)
     db.commit()
     db.refresh(db_monthly_goal)
     return db_monthly_goal
 
 
-@router.get("/monthly_goals/{user_id}",response_model=MonthlyGoalResponse)
+@router.get("/monthly_goals/{user_id}",response_model=List[MonthlyGoalResponse])
 def get_monthly_goals(user_id:int, db: Session = Depends(get_db)):
+    
     monthly_goal = get_monthly_goal(db, user_id)
     if monthly_goal is None:
         raise HTTPException(status_code=404, detail="Monthly goal not found")
-    return monthly_goal
+    return [
+        MonthlyGoalResponse(
+            id= goal.id,
+            user_id=goal.user_id,
+            goal1=goal.goal1,
+            goal2=goal.goal2,
+            goal3=goal.goal3,
+            goal4=goal.goal4,
+            goal5=goal.goal5,
+            created_at=goal.created_at
+        )
+        for goal in monthly_goal
+    ]
