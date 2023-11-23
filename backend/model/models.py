@@ -1,6 +1,7 @@
 from datetime import datetime
-from sqlalchemy import Column, Integer, Text, String, Boolean, DateTime, ForeignKey
+from sqlalchemy import Column, Integer, Text, String, Boolean, DateTime, ForeignKey, Date
 from sqlalchemy.orm import relationship
+
 
 from base_class import Base
 
@@ -27,7 +28,7 @@ class DailyGoal(Base):
     goal3 = Column(String, nullable=True)
     goal4 = Column(String, nullable=True)
     goal5 = Column(String, nullable=True)
-    created_at = Column(DateTime, default=datetime.now)
+    created_at = Column(Date, default=datetime.now().date())
     
     user = relationship('User', back_populates='daily_goals')
 
@@ -40,7 +41,7 @@ class MonthlyGoal(Base):
     goal3 = Column(String, nullable=True)
     goal4 = Column(String, nullable=True)
     goal5 = Column(String, nullable=True)
-    created_at = Column(DateTime, default=datetime.now)
+    created_at = Column(Date, default=datetime.now().date())
     
     user = relationship('User', back_populates='monthly_goals')
 
