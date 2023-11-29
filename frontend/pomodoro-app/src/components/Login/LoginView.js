@@ -29,10 +29,10 @@ const LoginForm = () => {
         
 
         return (
-          <div className="Auth-form-container">
-          <form className="Auth-form" onSubmit={onsubmit}>
-            <div className="Auth-form-content">
-              <h3 className="Auth-form-title">Sign In</h3>
+          <div className="flex justify-center items-center w-screen h-screen">
+          <form className="w-[450px] pt-[30px] pb-[20px] relative shadow bg-white" onSubmit={onsubmit}>
+            <div className="pl-[12%] pr-[12%]">
+              <h3 className="text-center mb-[1em] text-2xl">Sign In</h3>
               <div className="form-group mt-3">
                 <label>Email address</label>
                 <input
