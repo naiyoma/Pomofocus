@@ -96,17 +96,16 @@ def create_daily_goal(daily_goal: DailyGoalCreate, db: Session = Depends(get_db)
 @router.get("/daily_goals/{user_id}/created_at/",response_model=List[DailyGoalResponse])
 def get_monthly_goals(user_id:int, created_at: date,  db: Session = Depends(get_db)):
     daily_goal = get_daily_goal(db, user_id, created_at)
-    import pdb; pdb.set_trace()
     if daily_goal is None:
         raise HTTPException(status_code=404, detail="Daily goal not found")
     return [DailyGoalResponse(
         id=goal.id,
         user_id=goal.user_id,
         goal1=goal.goal1,
-        goal1=goal.goal2,
-        goal1=goal.goal3,
-        goal1=goal.goal4,
-        goal1=goal.goal5,
+        goal2=goal.goal2,
+        goal3=goal.goal3,
+        goal4=goal.goal4,
+        goal5=goal.goal5,
         created_at=goal.created_at
     ) for goal in daily_goal]
 
