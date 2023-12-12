@@ -10,6 +10,8 @@ import MonthlyGoalsForm from "./components/Month";
 import YearGoalsForm from "./components/Year"
 import { LoginForm } from './components/Login';
 import {RegistrationForm} from './components/Register';
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 function App() {
   return (
@@ -36,6 +38,7 @@ function App() {
           {/* <PomodoroTimer /> */}
         </div>
       </Auth0Provider>
+      <ToastContainer />
       {/* Other components */}
     </div>
   );

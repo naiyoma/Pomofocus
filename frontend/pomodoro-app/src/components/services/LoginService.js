@@ -1,6 +1,6 @@
 import axios from "axios";
 import endPoint from "../Configs";
-
+import { toast } from "react-toastify";
 export const login = async ({
   details: { email, password }
 }) => {
@@ -11,9 +11,23 @@ export const login = async ({
         password
       
     });
-    return response.data;
+    if (response.status === 200) {
+      toast.success("Login successful");
+      return response.data;
+    } else {
+      toast.error("Login failed: Unexpected response status");
+      return null; 
+    }
   } catch (error) {
-    console.error("Error during login:", error);
-    throw error; // Rethrow the error to be handled by the calling code
+    if (error.response) {
+      toast.error(`Login failed: ${error.response.data['detail'][0]['msg']}`);
+    } else if (error.request) {
+      toast.error("Login failed: No response received");
+    } else {
+      toast.error("Login failed: Request setup error");
+    }
+    
+    return null;
+  
   }
 };
