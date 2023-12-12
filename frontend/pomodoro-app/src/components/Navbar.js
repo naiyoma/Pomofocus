@@ -4,8 +4,6 @@ import Settings from './Settings';
 import { useAuth0 } from '@auth0/auth0-react';
 import PomodoroTimer from '../Timer';
 import { Link } from 'react-router-dom';
-import "bootstrap/dist/css/bootstrap.min.css"
-import { LoginForm } from './Login';
 
 
 function Navbar() {
