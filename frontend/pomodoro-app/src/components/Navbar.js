@@ -26,7 +26,7 @@ function Navbar() {
                 onClick={() => loginWithRedirect()}
                 className="rounded-full border-solid border-2 border-teal-900 w-20 bg-teal-100 text-teal-900"
               >
-                Login
+                Login 2
               </button>
             )}
             {isAuthenticated && <Profile />}
