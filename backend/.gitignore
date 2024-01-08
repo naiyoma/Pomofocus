@@ -1,10 +1,9 @@
 # Ignore .env file
 .env
 /env/
-__pycache__
-/__pycache__/
-/alembic/__pycache__/
-/api/__pycache__/
-/nodel/__pycache__/
-/repository/__pycache__/
-/schema/__pycache__/
+__pycache__/
+alembic/__pycache__/
+api/__pycache__/
+model/__pycache__/
+repository/__pycache__/
+schema/__pycache__/
