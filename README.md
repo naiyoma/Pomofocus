@@ -32,7 +32,7 @@ python -m venv venv
 ```
 
 ```
-source venv/bin/activate
+source venv/bin/activate or (Windows) "venv\Scripts\activate"
 ```
 
 ```
