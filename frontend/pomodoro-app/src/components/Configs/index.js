@@ -1,0 +1,1 @@
+export { endPoint as default } from "./Constant.js";
