@@ -52,12 +52,19 @@ uvicorn main:app --reload
 cd ../frontend
 ```
 
-
 ```
 npm install
 ```
 
 ```
+cd pomodoro-app
+```
+
+```
 npm start
 ```
-###
+### If error "Cannot find module 'axios'"
+
+```
+npm install axios --save
+```
