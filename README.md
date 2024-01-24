@@ -39,7 +39,7 @@ source venv/bin/activate or (Windows) "venv\Scripts\activate"
 pip install -r requirements.txt
 ```
 
-#### Run the FastAPI server:
+#### Run the FastAPI server within venv:
 
 ```
 uvicorn main:app --reload
