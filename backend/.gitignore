@@ -1,6 +1,7 @@
 # Ignore .env file
 .env
 /env/
+/venv/
 __pycache__/
 alembic/__pycache__/
 api/__pycache__/
