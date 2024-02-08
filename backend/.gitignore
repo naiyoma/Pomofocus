@@ -5,6 +5,7 @@
 __pycache__/
 alembic/__pycache__/
 api/__pycache__/
+apis/__pycache__/
 model/__pycache__/
 repository/__pycache__/
 schema/__pycache__/
