@@ -20,6 +20,7 @@ const LoginForm = () => {
       });
 
       console.log('Login successful:', response);
+      navigate('/');
       // Add any additional handling for successful registration
     } catch (error) {
       console.error('Error during login:', error);

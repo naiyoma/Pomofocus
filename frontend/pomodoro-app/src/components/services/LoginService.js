@@ -1,6 +1,7 @@
 import axios from "axios";
 import endPoint from "../Configs";
 import { toast } from "react-toastify";
+import { POMOFOCUS_USER_DATA } from "./Constants";
 export const login = async ({
   details: { email, password }
 }) => {
@@ -13,7 +14,9 @@ export const login = async ({
     });
     if (response.status === 200) {
       toast.success("Login successful");
+      localStorage.setItem(POMOFOCUS_USER_DATA, JSON.stringify(response.data));
       return response.data;
+
     } else {
       toast.error("Login failed: Unexpected response status");
       return null; 
