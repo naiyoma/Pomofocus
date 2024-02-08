@@ -1,18 +1,20 @@
-from datetime import datetime
-from fastapi import APIRouter, status
+from datetime import date
+from fastapi import APIRouter, status, Path
 from sqlalchemy.orm  import Session
 from fastapi import Depends, HTTPException
 from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 
 from schemas.user import UserCreate, ListUser, UserResponse, TokenSchema,TokenPayload, LoginCredentials
-from schemas.goals import DailyGoalCreate, DailyGoalResponse
+from schemas.goals import DailyGoalCreate, DailyGoalResponse, MonthlyGoalCreate, MonthlyGoalResponse
 from session import get_db
 from repository.user import get_all_users, get_user_by_email
-from model.models import User, DailyGoal
+from repository.goals import get_monthly_goal, get_daily_goal
+from model.models import User, DailyGoal, MonthlyGoal
 from typing import List
 from hashing import Hasher
 from utils import create_access_token, create_refresh_token
 from datetime import timedelta
+from datetime import datetime
 
 router = APIRouter()
 
@@ -25,9 +27,9 @@ def get_user(db: Session=Depends(get_db)):
     list_users = [ListUser(id=user.id, email=user.email, is_active=user.is_active) for user in users]
     return list_users
 
+
 @router.post("/create-user/", response_model=UserResponse)
 def create_user(user: UserCreate, db: Session = Depends(get_db)):
-    # import pdb; pdb.set_trace()
     if user.password != user.confirm_password:
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,
@@ -77,17 +79,68 @@ def login(credentials: LoginCredentials, db: Session = Depends(get_db)):
 
 
 @router.post("/daily-goals/", response_model=DailyGoalResponse)
-def create_daily_goal(daily_goal: DailyGoalCreate, user_id: int, db: Session = Depends(get_db)):
+def create_daily_goal(daily_goal: DailyGoalCreate, db: Session = Depends(get_db)):
     db_daily_goal = DailyGoal(
-        user_id=user_id,
+        user_id=daily_goal.user_id,
         goal1=daily_goal.goal1,
         goal2=daily_goal.goal2,
         goal3=daily_goal.goal3,
         goal4=daily_goal.goal4,
         goal5=daily_goal.goal5,
-        created_at=datetime.now())
+        created_at=datetime.now().date())
     db.add(db_daily_goal)
     db.commit()
     db.refresh(db_daily_goal)
     return db_daily_goal
 
+@router.get("/daily_goals/{user_id}/created_at/",response_model=List[DailyGoalResponse])
+def get_monthly_goals(user_id:int, created_at: date,  db: Session = Depends(get_db)):
+    daily_goal = get_daily_goal(db, user_id, created_at)
+    if daily_goal is None:
+        raise HTTPException(status_code=404, detail="Daily goal not found")
+    return [DailyGoalResponse(
+        id=goal.id,
+        user_id=goal.user_id,
+        goal1=goal.goal1,
+        goal2=goal.goal2,
+        goal3=goal.goal3,
+        goal4=goal.goal4,
+        goal5=goal.goal5,
+        created_at=goal.created_at
+    ) for goal in daily_goal]
+
+@router.post("/monthly-goals/", response_model=MonthlyGoalResponse)
+def create_monthly_goal(monthly_goal: MonthlyGoalCreate, db: Session = Depends(get_db)):
+    db_monthly_goal = MonthlyGoal(
+        user_id=monthly_goal.user_id,
+        goal1=monthly_goal.goal1,
+        goal2=monthly_goal.goal2,
+        goal3=monthly_goal.goal3,
+        goal4=monthly_goal.goal4,
+        goal5=monthly_goal.goal5,
+        created_at=datetime.now().date())
+    db.add(db_monthly_goal)
+    db.commit()
+    db.refresh(db_monthly_goal)
+    return db_monthly_goal
+
+
+@router.get("/monthly_goals/{user_id}",response_model=List[MonthlyGoalResponse])
+def get_monthly_goals(user_id:int, db: Session = Depends(get_db)):
+    
+    monthly_goal = get_monthly_goal(db, user_id)
+    if monthly_goal is None:
+        raise HTTPException(status_code=404, detail="Monthly goal not found")
+    return [
+        MonthlyGoalResponse(
+            id= goal.id,
+            user_id=goal.user_id,
+            goal1=goal.goal1,
+            goal2=goal.goal2,
+            goal3=goal.goal3,
+            goal4=goal.goal4,
+            goal5=goal.goal5,
+            created_at=goal.created_at
+        )
+        for goal in monthly_goal
+    ]
