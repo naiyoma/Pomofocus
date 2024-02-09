@@ -69,9 +69,11 @@ def login(credentials: LoginCredentials, db: Session = Depends(get_db)):
 
     access_token = create_access_token(subject=user.email, expires_delta=access_token_expires)
     refresh_token = create_refresh_token(subject=user.email, expires_delta=refresh_token_expires)
+    user_id = user.id
     user_token = TokenPayload(sub=user.email, exp=access_token_expires.seconds), access_token, refresh_token
     token_payload = {
         "token_payload": user_token,
+        "user_id": user_id,
         "access_token": access_token,
         "refresh_token": refresh_token
     }

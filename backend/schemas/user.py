@@ -23,6 +23,7 @@ class ListUser(BaseModel):
         orm_mode = True
 
 class TokenSchema(BaseModel):
+    user_id: int
     access_token: str
     refresh_token: str
 
