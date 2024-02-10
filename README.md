@@ -68,3 +68,30 @@ npm start
 ```
 npm install axios --save
 ```
+### Running Backend and Frontend with Powershell
+#### Note: Assume you are in Pomofocus root
+
+Split Terminals (Ctrl+Shift+S)
+
+Left Terminal:
+```
+.\runbackend.ps1
+```
+
+Right Terminal:
+```
+.\runfrontend.ps1
+```
+
+
+#### To exit servers without closing terminals:
+
+Left Terminal:
+Ctrl+C (returns to venv)
+```
+deactivate (deactivates the venv)
+```
+
+Right Terminal:
+Press Ctrl+C
+Press Y

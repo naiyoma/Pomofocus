@@ -32,14 +32,14 @@ python -m venv venv
 ```
 
 ```
-source venv/bin/activate
+source venv/bin/activate or (Windows) "venv\Scripts\activate"
 ```
 
 ```
 pip install -r requirements.txt
 ```
 
-#### Run the FastAPI server:
+#### Run the FastAPI server within venv:
 
 ```
 uvicorn main:app --reload
@@ -52,13 +52,21 @@ uvicorn main:app --reload
 cd ../frontend
 ```
 
-
 ```
 npm install
 ```
 
 ```
+cd pomodoro-app
+```
+
+```
 npm start
+```
+### If error "Cannot find module 'axios'"
+
+```
+npm install axios --save
 ```
 ### Running Backend and Frontend with Powershell
 #### Note: Assume you are in Pomofocus root
