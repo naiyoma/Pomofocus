@@ -9,6 +9,7 @@ function DailyGoalsForm() {
     const [goal3, setGoal3] = useState('');
     const [goal4, setGoal4] = useState('');
     const [goal5, setGoal5] = useState('');
+    const [formSubmitted, setFormSubmitted] = useState(false);
     var today = new Date();
     var dd = String(today.getDate()).padStart(2, '0');
     var mm = String(today.getMonth() + 1).padStart(2, '0');
@@ -58,6 +59,7 @@ function DailyGoalsForm() {
             });
 
             console.log('Goals added successfully:', response);
+            setFormSubmitted(true); // Update state to indicate form submission
         } catch (error) {
             console.error('Error during Addition of Goals:', error);
         }
@@ -67,6 +69,18 @@ function DailyGoalsForm() {
         <div>
             <div className="min-h-screen flex flex-col items-center justify-start p-4 ">
                 <h2 className="mb-8 text-2xl font-bold">Set Your Daily Goals</h2>
+                {formSubmitted ? (
+                    <div className="w-full max-w-lg bg-teal p-6 border border-teal-200 rounded-lg shadow dark:bg-teal-800 dark:border-teal-700 bg-teal-100">
+                        <div className="text-center">Goals submitted successfully!</div>
+                        <div className="card-container bg-teal">
+                        <div className="card flex items-center justify-center mb-4">{goal1}</div>
+                        <div className="card flex items-center justify-center mb-4">{goal2}</div>
+                        <div className="card flex items-center justify-center mb-4">{goal3}</div>
+                        <div className="card  flex items-center justify-center mb-4">{goal4}</div>
+                        <div className="card  flex items-center justify-center mb-4">{goal5}</div>
+                        </div>
+                    </div>
+                ) : (
                 <div className="w-full max-w-lg bg-white p-6 border border-teal-200 rounded-lg shadow dark:bg-teal-800 dark:border-teal-700 bg-teal-100">
                     <form className='bg-teal-100' onSubmit={onSubmit}>
                     <div class="relative z-0 w-full mb-4 group">
@@ -89,10 +103,10 @@ function DailyGoalsForm() {
             <input type="text" name="floating_email" id="floating_email" class="block py-1.5 px-0 w-full text-sm text-teal-900 bg-transparent border-0 border-b-2 border-teal-300 appearance-none dark:text-white dark:border-teal-600 dark:focus:border-teal-500 focus:outline-none focus:ring-0 focus:border-teal-600 peer" value={goal5} placeholder=" " onChange={(e) => setGoal5(e.target.value)} required />
             <label for="floating_email" class="peer-focus:font-medium absolute text-sm text-teal-500 dark:text-teal-400 duration-300 transform -translate-y-4 scale-75 top-2 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-teal-600 peer-focus:dark:text-teal-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-4">Goal 5</label>
         </div>
-        <button type="submit" class="text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800">Submit</button>
-
+                            <button type="submit" className="text-white bg-teal-700 hover:bg-teal-800 focus:ring-4 focus:outline-none focus:ring-teal-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-teal-600 dark:hover:bg-teal-700 dark:focus:ring-teal-800">Submit</button>
                     </form>
                 </div>
+                )}
             </div>
         </div>
     );
